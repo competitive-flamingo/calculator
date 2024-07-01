@@ -24,7 +24,21 @@ const calculator = {
     }
 };
 
-let firstOperand;
-let secondOperand;
-let operator;
+function populateDisplay(event) {
+    const target = event.target;
+    if(target.className === "digit") {
+        const targetNumber = Number(target.textContent);
+        const entryNumber = Number(entryField.textContent);
+        entryField.textContent = entryNumber * 10 + targetNumber;
+        entryFieldVal = Number(entryField.textContent);
+        console.log(entryFieldVal);
+    }
+}
+
+let firstOperand = null;
+let secondOperand = null;
+let operator = null;
+let entryFieldVal = 0;
+
+
 

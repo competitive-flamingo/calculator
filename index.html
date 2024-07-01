@@ -1,55 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Calculator</title>
 </head>
 <body>
-    <div class="container">
-        <div class="display">
-            <div class="entry-field">0</div>
-        </div>
-        <div class="buttons">
-            <div class="left-side"> <!--Dot button also goes here-->
-                <div class="system-buttons">
-                    <div class="all-clear">AC</div>
-                    <div class="plus-minus">+/-</div>
-                    <!-- <div class="percentage">%</div> -->
-                    <div class="delete-digit">⌫</div>
-                </div>
-                <div class="digits-row">
-                    <div class="7">7</div>
-                    <div class="8">8</div>
-                    <div class="9">9</div>
-                </div>
-                <div class="digits-row">
-                    <div class="4">4</div>
-                    <div class="5">5</div>
-                    <div class="6">6</div>
-                </div>
-                <div class="digits-row">
-                    <div class="1">1</div>    
-                    <div class="2">2</div>
-                    <div class="3">3</div>
-                </div>
-                <div class="digits-row">
-                    <div class="zero">0</div>
-                    <div class="dot">.</div>
-                </div>
-            </div>
-            <div class="right-side">
-                <div class="operation-buttons">
-                    <div class="divide">/</div>
-                    <div class="multiply">*</div>
-                    <div class="subtract">-</div>
-                    <div class="add">+</div>
-                    <div class="equal">=</div>
-                </div>
-            </div> 
-        </div>
+  <div class="container">
+    <div class="display">
+      <div class="operation-space"></div>
+      <div class="typing-space">0</div>
     </div>
-    <script src="./script.js"></script>
+    <div class="buttons">
+      <div class="row">
+        <button class="sys" value="clr">AC</button>
+        <button class="sys" value="del">DEL</button>
+        <button class="sys" value="pm">+/-</button>
+        <button class="op" value="div">/</button>
+      </div>
+      <div class="row">
+        <button class="dig" value="7">7</button>
+        <button class="dig" value="8">8</button>
+        <button class="dig" value="9">9</button>
+        <button class="op" value="mul">*</button>
+      </div>
+      <div class="row">
+        <button class="dig" value="4">4</button>
+        <button class="dig" value="5">5</button>
+        <button class="dig" value="6">6</button>
+        <button class="op" value="sub">-</button>
+      </div>
+      <div class="row">
+        <button class="dig" value="1">1</button>
+        <button class="dig" value="2">2</button>
+        <button class="dig" value="3">3</button>
+        <button class="op" value="add">+</button>
+      </div>
+      <div class="row">
+        <button class="dig" value="0" id="zero">0</button>
+        <button class="dig" value="dot">.</button>
+        <button class="op" value="eq">=</button>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js"></script>
 </body>
 </html>
