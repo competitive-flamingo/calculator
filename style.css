@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -10,4 +11,82 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    width: 500px;
+    height: 600px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.container > * {
+    flex-grow: 1;
+}
+
+.display {
+    border: 1px solid purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.entry-field {
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid black;
+    margin: 0px 5px;
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.buttons {
+    flex-grow: 2;
+    display: flex;
+    border: 1px solid red;
+}
+
+.buttons > * {
+    flex-grow: 1;
+}
+
+.left-side {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side > * {
+    flex-grow: 1;
+    display: flex;
+}
+
+.system-buttons > *, .digits-row > *, .operation-buttons > * {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
+    font-weight: bold;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.digits-row > .zero{
+    flex-grow: 2;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.operation-buttons {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
