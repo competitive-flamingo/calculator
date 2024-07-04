@@ -9,9 +9,10 @@
 body {
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
     font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
     background-color: #2C3333;
 }
@@ -85,3 +86,70 @@ button {
     flex: 2.07;
 }
 
+.github-logo {
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+
+.current-year {
+    margin: 0px 5px;
+}
+
+.footer {
+    flex-grow: 0;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 5px solid #2C3333;
+    background-color: #CBE4DE;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
+    width: 400px;
+    height: 600px;
+    border: 4px solid #0E8388;
+    border-radius: 10px;
+    background-color: #2E4F4F;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+legend {
+    margin: 0px 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #CBE4DE;
+}
+
+fieldset div {
+    font-size: 20px;
+    margin: 0px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.description {
+    color: #CBE4DE;
+    font-weight: bold;
+}
+
+.command {
+    width: 135px;
+    height: auto;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid #0E8388;
+    background-color: #2C3333;
+    color: #CBE4DE;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

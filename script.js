@@ -36,12 +36,14 @@ let calculator = {
 const operationSpace = document.querySelector(".operation-space");
 const typingSpace = document.querySelector(".typing-space");
 const buttons = document.querySelector(".buttons");
+const currentYear = document.querySelector(".current-year");
 let entryFieldVal = "0";
 let isEqualPressed = false;
+currentYear.textContent = new Date().getFullYear();
 buttons.addEventListener("click", changeDisplay);
 buttons.addEventListener("mouseover", toggleBackgroundColor);
 buttons.addEventListener("mouseout", toggleBackgroundColor);
-
+document.addEventListener("keydown", controlCalculator);
 
 function toggleBackgroundColor(event) {
     const target = event.target;
@@ -76,12 +78,14 @@ function changeDisplay(event) {
             isEqualPressed = false;
             break;  
         case "op":
-            if(targetVal === "=") {
+            if(targetVal === "Enter") {
                 isEqualPressed = true;
                 if(calculator.operator) {
                     calculator.secondOperand.value = operands[1] ? operands[1] : operands[0];
-                    operationSpace.textContent = `${calculator.firstOperand.value} ${calculator.operator} ${calculator.secondOperand.value}`;
-                    calculator.firstOperand.value = calculator.operate(calculator.operator, Number(calculator.firstOperand.value), Number(calculator.secondOperand.value));
+                    operationSpace.textContent = 
+                    `${calculator.firstOperand.value} ${calculator.operator} ${calculator.secondOperand.value}`;
+                    calculator.firstOperand.value = calculator.operate(calculator.operator, Number(calculator.firstOperand.value)
+                    , Number(calculator.secondOperand.value));
                     formateOperand("firstOperand");
                     calculator.secondOperand.value = null;
                     entryFieldVal = calculator.firstOperand.value;
@@ -94,7 +98,8 @@ function changeDisplay(event) {
             else {
                 isEqualPressed = false;
                 if(operands[1]) {
-                    calculator.firstOperand.value = calculator.operate(calculator.operator, Number(operands[0]), Number(operands[1]));
+                    calculator.firstOperand.value = calculator.operate(calculator.operator, Number(operands[0])
+                    , Number(operands[1]));
                     formateOperand("firstOperand");
                     calculator.secondOperand.value = null;
                     calculator.operator = targetVal;
@@ -109,8 +114,8 @@ function changeDisplay(event) {
             }
             break;
         case "sys":
-            if(targetVal === "clr") clearAll();
-            else if(targetVal === "del") {
+            if(targetVal === "Delete") clearAll();
+            else if(targetVal === "Backspace") {
                 if(isEqualPressed) {
                     operationSpace.textContent = entryFieldVal;
                     if(calculator.operator) calculator.operator = null;
@@ -141,7 +146,8 @@ function changeDisplay(event) {
                 }
                 else {
                     toggleSign("firstOperand");
-                    operationSpace.textContent = calculator.firstOperand.value + (calculator.operator ? ` ${calculator.operator} ` : "");
+                    operationSpace.textContent = 
+                    calculator.firstOperand.value + (calculator.operator ? ` ${calculator.operator} ` : "");
                     entryFieldVal = calculator.firstOperand.value;
                 }
                 typingSpace.textContent = entryFieldVal;
@@ -155,13 +161,25 @@ function changeDisplay(event) {
 function setOperandValue(targetVal, operand) {
     if(!calculator[operand].value) calculator[operand].value = "0";
     if(targetVal === ".") {
-        calculator[operand].value = !calculator[operand].isDotUsed ? calculator[operand].value + targetVal : calculator[operand].value;
+        calculator[operand].value = 
+        !calculator[operand].isDotUsed ? calculator[operand].value + targetVal : calculator[operand].value;
         calculator[operand].isDotUsed = true;
     }
     else if(targetVal === "0") {
-        calculator[operand].value = Number(calculator[operand].value) === 0 ? calculator[operand].value : calculator[operand].value + targetVal;
+            if((Number(calculator[operand].value) === 0 && calculator[operand].isDotUsed) 
+                || (Number(calculator[operand].value) !== 0)) calculator[operand].value += targetVal;
     }
-    else calculator[operand].value = Number(calculator[operand].value) === 0 ? (calculator[operand].value[0] === "-" ? `-${targetVal}` : targetVal) : calculator[operand].value + targetVal;
+    else {
+        if(calculator[operand].isDotUsed) calculator[operand].value += targetVal;
+        else {
+            if(Number(calculator[operand].value) === 0) {
+                calculator[operand].value = calculator[operand].value.at(0) === '-' ? `-${targetVal}` : targetVal;
+            }
+            else {
+                calculator[operand].value += targetVal;
+            }
+        }
+    }
 }
 
 
@@ -182,6 +200,7 @@ function clearAll() {
 
 function deleteDigit(operand) {
     let valueLength = calculator[operand].value.length;
+    if(calculator[operand].value.at(valueLength - 1) === ".") calculator[operand].isDotUsed = false;
     calculator[operand].value = calculator[operand].value.slice(0, valueLength - 1);
     switch(calculator[operand].value) {
         case "":
@@ -205,7 +224,24 @@ function isDigitLimitReached(operand) {
 
 function formateOperand(operand) {
     const operandValLength = calculator[operand].value.length;
-    calculator[operand].value = operandValLength > 10 ? parseFloat(calculator[operand].value).toPrecision(7).toString() : calculator[operand].value;
+    calculator[operand].value = 
+    operandValLength > 10 ? parseFloat(calculator[operand].value).toPrecision(7).toString() : calculator[operand].value;
 }
 
-
+function controlCalculator(event) {
+    const key = event.key;
+    const mouseEvent = new MouseEvent("click", {bubbles: true, cancellable: true});
+    if((key >= "0" && key <= "9")
+    || key === "Enter"
+    || key === "."
+    || key === "+"
+    || key === "-"
+    || key === "*"
+    || key === "/"
+    || key === "p"
+    || key === "Backspace"
+    || key === "Delete") {
+        const button = document.querySelector(`button[value="${key}"]`);
+        button.dispatchEvent(mouseEvent);
+    }
+}
