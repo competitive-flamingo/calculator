@@ -13,15 +13,18 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #2C3333;
 }
 
 .container {
     padding: 10px;
     width: 500px;
     height: 600px;
-    border: 1px solid black;
+    border: 4px solid #CBE4DE;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
+    background-color: #2E4F4F;
 }
 
 .container > * {
@@ -32,6 +35,8 @@ body {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    background-color: #CBE4DE;
+    border-radius: 10px;
 }
 
 .display > * {
@@ -43,11 +48,10 @@ body {
 }
 
 .operation-space {
-    border: 1px solid black;
+    border-bottom: 3px solid #2E4F4F;
  }
 
  .typing-space {
-    border: 1px solid black;
     font-size: 50px;
     font-weight: bold;
  }
@@ -68,9 +72,12 @@ body {
 button {
     flex: 1;
     width: 50px;
+    border: 3px solid #0E8388;
     border-radius: 10px;
     font-size: 30px;
     text-align: center;
+    background-color: #2C3333;
+    color: white;
     cursor: pointer;
 }
 

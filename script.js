@@ -39,6 +39,17 @@ const buttons = document.querySelector(".buttons");
 let entryFieldVal = "0";
 let isEqualPressed = false;
 buttons.addEventListener("click", changeDisplay);
+buttons.addEventListener("mouseover", toggleBackgroundColor);
+buttons.addEventListener("mouseout", toggleBackgroundColor);
+
+
+function toggleBackgroundColor(event) {
+    const target = event.target;
+    const tagName = target.tagName;
+    if(tagName === "BUTTON") {
+        target.style.backgroundColor = target.style.backgroundColor === "" ? "transparent" : "";
+    }
+}
 
 function changeDisplay(event) {
     const target = event.target;
