@@ -87,7 +87,7 @@ function changeDisplay(event) {
                     calculator.firstOperand.value = calculator.operate(calculator.operator, Number(calculator.firstOperand.value)
                     , Number(calculator.secondOperand.value));
                     formateOperand("firstOperand");
-                    calculator.secondOperand.value = null;
+                    clearOperand("secondOperand");
                     entryFieldVal = calculator.firstOperand.value;
                     typingSpace.textContent = entryFieldVal;
                 }
@@ -101,7 +101,7 @@ function changeDisplay(event) {
                     calculator.firstOperand.value = calculator.operate(calculator.operator, Number(operands[0])
                     , Number(operands[1]));
                     formateOperand("firstOperand");
-                    calculator.secondOperand.value = null;
+                    clearOperand("secondOperand");
                     calculator.operator = targetVal;
                     operationSpace.textContent = `${calculator.firstOperand.value} ${calculator.operator} `;
                     entryFieldVal = calculator.firstOperand.value;
@@ -226,6 +226,11 @@ function formateOperand(operand) {
     const operandValLength = calculator[operand].value.length;
     calculator[operand].value = 
     operandValLength > 10 ? parseFloat(calculator[operand].value).toPrecision(7).toString() : calculator[operand].value;
+}
+
+function clearOperand(operand) {
+    calculator[operand].value = null;
+    calculator[operand].isDotUsed = false;
 }
 
 function controlCalculator(event) {
