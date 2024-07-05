@@ -230,9 +230,8 @@ function formateOperand(operand) {
 
 function controlCalculator(event) {
     const key = event.key;
-    const mouseEvent = new MouseEvent("click", {bubbles: true, cancellable: true});
     if((key >= "0" && key <= "9")
-    || key === "Enter"
+        || key === "Enter"
     || key === "."
     || key === "+"
     || key === "-"
@@ -241,6 +240,7 @@ function controlCalculator(event) {
     || key === "p"
     || key === "Backspace"
     || key === "Delete") {
+        const mouseEvent = new MouseEvent("click", {bubbles: true});
         const button = document.querySelector(`button[value="${key}"]`);
         button.dispatchEvent(mouseEvent);
     }
